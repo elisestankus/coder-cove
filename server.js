@@ -16,3 +16,10 @@ const hbs = exphbs.create({});
 //sets up handlebars as template engine
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+
+//Middleware to parse JSON and url encoded data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+//Middleware to serve static files
+app.use(express.static(path.join(__dirname, 'public')));
