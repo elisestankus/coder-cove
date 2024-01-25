@@ -19,7 +19,6 @@ router.post('/', async (req, res) => {
 });
 
 //post route to login user
-
 router.post('/login', async (req, res) => {
     try {
         // find user matching the inputted email
@@ -52,5 +51,15 @@ router.post('/login', async (req, res) => {
     }
 });
 
+//post route to logout user - destroys the session
+router.post('/logout', (req, res) => {
+    if (req.session.logged_in) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    } else {
+        res.status(404).end();
+    }
+});
 
-
+module.exports = router;
