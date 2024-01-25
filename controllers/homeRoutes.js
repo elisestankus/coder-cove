@@ -33,7 +33,7 @@ router.get('/signup', async (req, res) => {
 //get route for comments & commenting form for a single post - finds the clicked post by pk and then includes the associated comments (and the comments' associated user data) and the user data for the user who owns the post
 router.get('/postComments/:id', withAuth, async (req, res) => {
     try {
-        const postData = await Post.findByPk(req.params.id, {
+        const postData = await BlogPost.findByPk(req.params.id, {
             include: [
                 {
                     model: Comment,
