@@ -1,8 +1,11 @@
 //dependencies/files
 const router = require('express').Router();
-const loginRoutes = require('./loginRoutes');
-const signupRoutes = require('./signupRoutes');
-const forgotPasswordRoutes = require('./forgotpasswordRoute');
-const languageRoutes = require('./languageRoutes');
-const projectRoutes = require('./projectRoutes');
+const userRoutes = require('./userRoutes');
+const blogpostRoutes = require('./blogpostRoutes');
+const commentRoutes = require('./commentRoutes');
 
+router.use('/user', userRoutes);
+router.use('/blogpost', blogpostRoutes);
+router.use('/comment', commentRoutes);
+
+module.exports = router;
