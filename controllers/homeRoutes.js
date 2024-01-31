@@ -89,9 +89,9 @@ router.get('/dashboard', withAuth, async (req, res) => {
 });
 
 //get route for new post form
-router.get('/newBlogPost', async (req, res) => {
+router.get('/newPost', async (req, res) => {
     try {
-        res.render('newBlogPost');
+        res.render('newPost');
     } catch (err) {
         res.status(500).json(err);
     }
