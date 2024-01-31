@@ -19,3 +19,13 @@ header, .card-header {
 .bolded {
     font-weight: bold;
 }
+
+.cardBtn, .dashBtn {
+    background-color: rgb(0, 72, 139);
+    color: white
+}
+
+.dashBtn:hover, .cardBtn:hover {
+    background-color: rgb(1, 56, 108);
+    color: white;
+}
