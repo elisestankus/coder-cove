@@ -1,0 +1,9 @@
+<div class="row">
+    <h3 class="col col-12 col-md-10">Welcome to your dashboard, {{username}}!</h3> <a
+        class="btn dashBtn col col-12 col-md-2" href="./newPost" role="button">+ New post</a>
+</div>
+<div class="container">
+    {{#each blogPosts as |blogPost|}}
+    {{>dashPost-details}}
+    {{/each}}
+</div>

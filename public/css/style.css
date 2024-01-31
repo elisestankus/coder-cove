@@ -1,0 +1,31 @@
+body {
+    background-color: rgb(174, 205, 209);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+header, nav, .card-header{
+    background-color: rgb(0, 72, 139);
+}
+
+header, .card-header {
+    color: white;
+}
+
+.navLink {
+    color: white;
+    text-align: center;
+}
+
+.bolded {
+    font-weight: bold;
+}
+
+.cardBtn, .dashBtn {
+    background-color: rgb(0, 72, 139);
+    color: white
+}
+
+.dashBtn:hover, .cardBtn:hover {
+    background-color: rgb(1, 56, 108);
+    color: white;
+}
