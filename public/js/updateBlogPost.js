@@ -44,3 +44,12 @@ const delPostButtonHandler = async (event) => {
         }
     }
 };
+
+document
+    .querySelector('.updateForm')
+    .addEventListener('submit', updatePostFormHandler);
+
+
+document
+    .querySelector('.delBtn')
+    .addEventListener('click', delPostButtonHandler);
