@@ -16,7 +16,7 @@ const newCommentFormHandler = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/dashboard');
+            document.location.replace(`/postComments/${post_id}`);
         } else {
             alert('Failed to add comment');
         }
