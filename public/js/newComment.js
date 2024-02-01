@@ -22,3 +22,7 @@ const newCommentFormHandler = async (event) => {
         }
     }
 };
+
+document
+    .querySelector('.commentForm')
+    .addEventListener('submit', newCommentFormHandler);
