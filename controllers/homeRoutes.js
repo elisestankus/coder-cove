@@ -6,7 +6,19 @@ const withAuth = require('../utils/auth');
 //get route for homepage
 router.get('/', async (req, res) => {
     try {
-        res.render('homepage');
+        const blogPostData = await BlogPost.findAll({
+            include: [
+                {
+                    model: User,
+                    attributes:['username'],
+                },
+            ],
+        });
+        const blogPosts = blogPostData.map((blogPost) => blogPost.get({ plain: true }));
+        res.render('homepage', {
+            blogPosts,
+            logged_in: req.session.logged_in
+        });
     } catch (err) {
         res.status(500).json(err);
     }
@@ -15,6 +27,10 @@ router.get('/', async (req, res) => {
 //get route for login page
 router.get('/login', async (req, res) => {
     try {
+        if(req.session.logged_in) {
+            res.redirect('/dashboard');
+            return
+        }
         res.render('login');
     } catch (err) {
         res.status(500).json(err);
@@ -31,7 +47,7 @@ router.get('/signup', async (req, res) => {
 });
 
 //get route for comments & commenting form for a single post - finds the clicked post by pk and then includes the associated comments (and the comments' associated user data) and the user data for the user who owns the post
-router.get('/postComments/:id', withAuth, async (req, res) => {
+router.get('/postComments/:id', async (req, res) => {
     try {
         const postData = await BlogPost.findByPk(req.params.id, {
             include: [
@@ -91,16 +107,18 @@ router.get('/dashboard', withAuth, async (req, res) => {
 //get route for new post form
 router.get('/newPost', async (req, res) => {
     try {
-        res.render('newPost');
+        res.render('newPost', {logged_in: req.session.logged_in});
     } catch (err) {
         res.status(500).json(err);
     }
 });
 
 //get route for update post form
-router.get('/updateBlogPost', async (req, res) => {
+router.get('/updateBlogPost/:id', async (req, res) => {
     try {
-        res.render('updateBlogPost');
+        const postData = await BlogPost.findByPk(req.params.id);
+        const post = postData.get({ plain: true });
+        res.render('updateBlogPost', {...post, logged_in: req.session.logged_in});
     } catch (err) {
         res.status(500).json(err);
     }
