@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
 //get route for login page
 router.get('/login', async (req, res) => {
     try {
-        res.render('login');
+        res.render('login', {logged_in: req.session.logged_in});
     } catch (err) {
         res.status(500).json(err);
     }
@@ -36,7 +36,7 @@ router.get('/login', async (req, res) => {
 //get route for signup page
 router.get('/signup', async (req, res) => {
     try {
-        res.render('signup');
+        res.render('signup', {logged_in: req.session.logged_in});
     } catch (err) {
         res.status(500).json(err);
     }
@@ -103,7 +103,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 //get route for new post form
 router.get('/newPost', async (req, res) => {
     try {
-        res.render('newPost');
+        res.render('newPost', {logged_in: req.session.logged_in});
     } catch (err) {
         res.status(500).json(err);
     }
