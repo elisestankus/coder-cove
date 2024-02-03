@@ -27,6 +27,10 @@ router.get('/', async (req, res) => {
 //get route for login page
 router.get('/login', async (req, res) => {
     try {
+        if(req.session.logged_in) {
+            res.redirect('/dashboard');
+            return
+        }
         res.render('login');
     } catch (err) {
         res.status(500).json(err);
