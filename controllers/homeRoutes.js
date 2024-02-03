@@ -110,9 +110,11 @@ router.get('/newPost', async (req, res) => {
 });
 
 //get route for update post form
-router.get('/updateBlogPost', async (req, res) => {
+router.get('/updateBlogPost/:id', async (req, res) => {
     try {
-        res.render('updateBlogPost');
+        const postData = await BlogPost.findByPk(req.params.id);
+        const post = postData.get({ plain: true });
+        res.render('updateBlogPost', {...post, logged_in: req.session.logged_in});
     } catch (err) {
         res.status(500).json(err);
     }
